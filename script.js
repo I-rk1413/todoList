@@ -1,11 +1,10 @@
-//Taking all the required variables and constants
+//Taking all the required letiables and constants
 
-var button = document.getElementsByClassName("Add")[0];
-var input = document.getElementById("userinput");
-const table=document.querySelector('table');
+let button = document.getElementsByClassName("Add")[0];
+let input = document.getElementById("userinput");
 const tbody=document.querySelector('tbody');
-var Del=document.getElementsByClassName('delete')[0];
-var dateInput=document.getElementById("dateInput");
+let dateInput=document.getElementById("dateInput");
+let count=0;
 
 
 
@@ -25,14 +24,21 @@ function checkLength(item) {
 //Function to create a new todo item
 
 function createListElement() {
-
-	var tr = document.createElement("tr");
-	 tr.innerHTML=`<th>1</th><td>${input.value}</td><td>${dateInput.value}</td><td><button>Done</button></td>`;
+	count+=1;
+	let tr = document.createElement("tr");
+	 tr.innerHTML=`<th>${count}</th><td>${input.value}</td><td>${dateInput.value}</td><td><button>Done</button></td>`;
 	tbody.appendChild(tr);
 	input.value = "";
 	dateInput.value='';
 
 }
+
+
+
+
+
+
+
 
 //Adding the functionality of adding list item on click
 
@@ -42,12 +48,10 @@ function addListAfterClick() {
 	if (inputLengthCheck && dateInputLengthCheck) {
 		createListElement();
 	}
+	else{
+		alert('Enter todo and due date')
+	}
 }
-
-
-
-
-
 
 //Adding the event listeners of adding list item on click
 
