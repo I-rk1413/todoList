@@ -1,3 +1,5 @@
+//Taking all the required variables and constants
+
 var button = document.getElementsByClassName("Add")[0];
 var input = document.getElementById("userinput");
 const table=document.querySelector('table');
@@ -7,15 +9,6 @@ var dateInput=document.getElementById("dateInput");
 
 
 
-// If you click on the list item, it toggles the .done  class on and off.
-
-
-// ul.onclick = function(e){
-// 	var target = e.target;
-// 	console.log(target);
-// 	target.classList.toggle("done");
-// }
-
 
 // 2. Add buttons next to each list item to delete the item when clicked on its corresponding delete button.
 // Del.onclick=function(){
@@ -23,41 +16,41 @@ var dateInput=document.getElementById("dateInput");
 // }
 
 
-function inputLength() {
-	return input.value.length;
+function checkLength(item) {
+	return item.value.length>0 ? true : false;
 }
+	
+
+
+//Function to create a new todo item
 
 function createListElement() {
 
 	var tr = document.createElement("tr");
-	 tr.innerHTML=`<th>1</th><td>${input.value}</td><td>${dateInput.value}</td><td><button id='button2'>Done</button></td>`;
+	 tr.innerHTML=`<th>1</th><td>${input.value}</td><td>${dateInput.value}</td><td><button>Done</button></td>`;
 	tbody.appendChild(tr);
 	input.value = "";
-	let button2=document.getElementById('button2');
-	button2.addEventListener("click", function(){
-           tr.style.display='none';
-});
+	dateInput.value='';
 
 }
+
+//Adding the functionality of adding list item on click
 
 function addListAfterClick() {
-	if (inputLength() > 0) {
+	let inputLengthCheck=checkLength(input);
+	let dateInputLengthCheck=checkLength(dateInput);
+	if (inputLengthCheck && dateInputLengthCheck) {
 		createListElement();
 	}
 }
 
-function addListAfterKeypress(event) {
-	if (inputLength() > 0 && event.keyCode === 13) {
-		createListElement();
-	}
-}
 
 
 
 
 
+//Adding the event listeners of adding list item on click
 
 button.addEventListener("click", addListAfterClick);
 
-input.addEventListener("keypress", addListAfterKeypress);
 
