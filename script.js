@@ -1,6 +1,7 @@
 var button = document.getElementsByClassName("Add")[0];
 var input = document.getElementById("userinput");
-var ul = document.querySelector("ul");
+const table=document.querySelector('table');
+const tbody=document.querySelector('tbody');
 var Del=document.getElementsByClassName('delete')[0];
 var dateInput=document.getElementById("dateInput");
 
@@ -17,9 +18,9 @@ var dateInput=document.getElementById("dateInput");
 
 
 // 2. Add buttons next to each list item to delete the item when clicked on its corresponding delete button.
-Del.onclick=function(){
-	Del.parentNode.remove();
-}
+// Del.onclick=function(){
+// 	Del.parentNode.remove();
+// }
 
 
 function inputLength() {
@@ -27,23 +28,14 @@ function inputLength() {
 }
 
 function createListElement() {
-	var li = document.createElement("li");
-	li.appendChild(document.createTextNode(input.value));
-	ul.appendChild(li);
 
-
-	var date=document.createElement('span');
-	date.appendChild(document.createTextNode(dateInput.value));
-	li.appendChild(date);
-
-
-	button2 = document.createElement("button");
-	button2.appendChild(document.createTextNode('Done'));
-	li.appendChild(button2);
+	var tr = document.createElement("tr");
+	 tr.innerHTML=`<th>1</th><td>${input.value}</td><td>${dateInput.value}</td><td><button id='button2'>Done</button></td>`;
+	tbody.appendChild(tr);
 	input.value = "";
-
+	let button2=document.getElementById('button2');
 	button2.addEventListener("click", function(){
-           li.style.display='none';
+           tr.style.display='none';
 });
 
 }
